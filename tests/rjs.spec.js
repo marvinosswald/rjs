@@ -25,7 +25,8 @@ describe('R.js', function(){
 	});
 	var r = new rjs({
 		env: 'development',
-		level: 'debug'
+		level: 'debug',
+		remote: 'http://localhost:3000'
 	});
 	it('init response with object', function(){
 		expect(r).checkType('object');
