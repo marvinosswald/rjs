@@ -10,11 +10,11 @@ Firstly you have to call the constructor function.
 	``
 then you can call any methods:
 
-	LOG:
-		#### Parameter:
-			- message
-			- title (default: AppName)
-			- callback function
+### LOG:
+	#### Parameter:
+		- message
+		- title (default: AppName)
+		- callback function
 
 
 The MIT License (MIT)
