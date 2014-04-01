@@ -1,0 +1,13 @@
+#generic Files
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.log
+
+# sublime spezifc files
+*.sublime-project
+*.sublime-workspace
+# grunt things
+node_modules
+build
