@@ -25,22 +25,14 @@ describe('R.js', function(){
 	});
 	var r = new rjs({
 		env: 'development',
-		level: 'debug',
+		level: 'silent',
 		remote: 'http://localhost:3000'
 	});
 	it('init response with object', function(){
 		expect(r).checkType('object');
 	})
 	it('log possible', function(){
-		var res = r.log('hi');
-		expect(res).toBe(true);
-	})
-	it('Meldung Action', function(){
-		var res = r._showCallback(1);
-		expect(res).toBe(true);
-	})
-	it('OK Action', function(){
-		var res = r._showCallback(2);
+		var res = r.log('Error','hi',{name:'peter'});
 		expect(res).toBe(true);
 	})
 })

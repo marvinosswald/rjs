@@ -2,6 +2,19 @@
 
 R.js is a lightweight logging framework for [Phonegap](http://www.phonegap.com) Applications.
 
+## Requirements
+
+There some Phonegap plugins needed:
+
+- org.apache.cordova.dialogs
+- org.apache.cordova.file
+- org.apache.cordova.device (only needed for report)
+- de.appplant.cordova.plugin.email-composer [Details](https://build.phonegap.com/plugins/522) (only needed for report)
+
+Install them easily with phonegap cli tool, for example:
+	
+	phonegap plugin add org.apache.cordova.dialogs
+
 ## Usage
 
 For instance you have to call the constructor function.
@@ -14,12 +27,23 @@ Option | Type | Default | Description
 level | string | silent | Defines what R.js should do if you invoke log
 appName | string | 'SampleApp' | Please set the Name of your Application
 remote | string | null | Here you can set the Adress of [rjscli](http://www.github.com/Osile/rjscli)
-then you can call any methods:
+report | object | false | If you want your users allow to send you a report mail provide this options array as described.
 
-### LOG:
+#### Report Object
+
+	{
+		email: 'YOUR EMAIL ADRESS',
+		btnReport: 'NAME THE LABEL SHOWN FOR REPORT',
+		btnOK: 'NAME THE LABEL SHOWN TO DISMISS A ALERT'
+	}
+
+## Methods
+
+### r.log:
 #### Parameter:
 	- message
 	- title (default: AppName)
+	- object (pass a object tos analyze it later, don't serialize it r.js is doing this for you)
 	- callback function
 
 ## Contribute
@@ -40,6 +64,8 @@ Jasmine is integrated as Unit Testing framework so just need to execute it after
 
 	grunt jasmine
 
+### TODO
+- Log parameter for an optional object to pass
 
 The MIT License (MIT)
 
