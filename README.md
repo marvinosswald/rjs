@@ -64,7 +64,9 @@ Jasmine is integrated as Unit Testing framework so just need to execute it after
 	grunt jasmine
 
 ### TODO
-- Log parameter for an optional object to pass
+- Implement method to get report manually 
+- Implement internal function to get old log entrys
+- write events like start / stop app to log
 
 The MIT License (MIT)
 
