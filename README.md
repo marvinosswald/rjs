@@ -43,8 +43,7 @@ report | object | false | If you want your users allow to send you a report mail
 #### Parameter:
 	- message
 	- title (default: AppName)
-	- object (pass a object tos analyze it later, don't serialize it r.js is doing this for you)
-	- callback function
+	- object (pass a object to analyze it later, don't serialize it r.js is doing this for you)
 
 ## Contribute
 
