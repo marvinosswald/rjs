@@ -6,7 +6,7 @@ function rjs(/*options*/){
 	this.log = log;
 	this._remote = _remote;
 	this._show = _show;
-	this._reportMail = _report;
+	this._reportMail = _reportMail;
 	
 
 	if(arguments.length == 1 && typeof arguments[0] == 'object'){
