@@ -25,16 +25,16 @@ function log(){
 		title: this.appName,
 		timestamp: Date.now()
 	};
-	if (arguments.Strings() == 1){
+	if (Strings(arguments) == 1){
 		//msg
 		msg.body = arguments[0];
-		msg.dumpObject = arguments.gotObject();
+		msg.dumpObject = gotObject(arguments);
 		
-	}else if (arguments.Strings() == 2){
+	}else if (Strings(arguments) == 2){
 		//msg with title
 		msg.title = arguments[0];
 		msg.body = arguments[1];
-		msg.dumpObject = arguments.gotObject();
+		msg.dumpObject = gotObject(arguments);
 
 	}else{
 		return false;
@@ -108,59 +108,49 @@ function _remote(msg){
 	http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	http.send('timestamp='+ msg.timestamp + '&msg='+message);
 }
-(function () {
-	Array.prototype.isString = function(i){
-		if(typeof this[i] == 'string'){
-			return true;
-		}else{
-			return false;
+function isString (arguments,i){
+	if(typeof arguments[i] == 'string'){
+		return true;
+	}else{
+		return false;
+	}
+}
+function isObject (arguments,i){
+	if(typeof arguments[i] == 'object'){
+		return true;
+	}else{
+		return false;
+	}
+}
+function isFunction (arguments,i){
+	if(typeof arguments[i] == 'function'){
+		return true;
+	}else{
+		return false;
+	}
+}
+function Strings (arguments){
+	var count = 0;
+	for (var i = 0; i < arguments.length; i++){
+		if(typeof arguments[i] == 'string'){count++;}
+	}
+	return count;
+}
+function gotObject (arguments){
+	var gotObj = false;
+	for (var i = 0; i < arguments.length; i++){
+		if(typeof arguments[i] == 'object'){
+			gotObj = arguments[i];
 		}
 	}
-	Array.prototype.isObject = function(i){
-		if(typeof this[i] == 'object'){
-			return true;
-		}else{
-			return false;
+	return gotObj;
+}
+function gotObject (arguments){
+	var gotFunc = false;
+	for (var i = 0; i < arguments.length; i++){
+		if(typeof arguments[i] == 'function'){
+			gotFunc = arguments[i];
 		}
 	}
-	Array.prototype.isFunction = function(i){
-		if(typeof this[i] == 'function'){
-			return true;
-		}else{
-			return false;
-		}
-	}
-	Array.prototype.Strings = function(){
-		var count = 0;
-		for (var i = 0; i < this.length; i++){
-			if(typeof this[i] == 'string'){count++;}
-		}
-		return count;
-	}
-	Array.prototype.gotObject = function(){
-		var gotObj = false;
-		for (var i = 0; i < this.length; i++){
-			if(typeof this[i] == 'object'){
-				gotObj = this[i];
-			}
-		}
-		return gotObj;
-	}
-	Array.prototype.gotObject = function(){
-		var gotFunc = false;
-		for (var i = 0; i < this.length; i++){
-			if(typeof this[i] == 'function'){
-				gotFunc = this[i];
-			}
-		}
-		return gotFunc;
-	}
-	var i,methods;
-    arguments.constructor.prototype = Array.prototype;
-    methods = ['isString','isFunction','isObject','Strings','gotObject','gotFunction'];
-    for (i = 0; i < methods.length; i += 1) {
-        if (arguments.constructor.prototype.hasOwnProperty(methods[i]) === false) {
-            arguments.constructor.prototype[methods[i]] = Array.prototype[methods[i]];
-        }
-    }
-}());
+	return gotFunc;
+}
