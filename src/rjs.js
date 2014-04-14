@@ -61,7 +61,7 @@ function _save(msg){
 	
 
 }
-function _reportMail(msg){
+function _reportMail(self,msg){
 	var body = 'Bug Report<br>'+ '_________________' + '<br>' +
 	    msg.title +' : '+msg.body+ '<br>' +
 	    'Model: ' + device.model + '<br>' +
@@ -70,19 +70,20 @@ function _reportMail(msg){
 	    if (msg.dumpObject){
 	        body += 'DumpObject: ' + JSON.stringify(dumpObject);
 	    }
-	        
+	
 	window.plugin.email.open({
-	    to:          [this.report.email],
+	    to:          [self.report.email],
 	    cc:          [],
 	    bcc:         [],
 	    attachments: [],
-	    subject:     this.appName + ' Bug Report',
+	    subject:     self.appName + ' Bug Report',
 	    body:        body,
 	    isHtml:      true
 	});
-	
+	return true;
 }
 function _show(msg){
+	var self = this;
 	if (this.report){
 		var buttons = [this.report.btnReport,this.report.btnOK];
 	}else{
@@ -93,7 +94,7 @@ function _show(msg){
 			if (btnIndex == 2){
 				// Do nothing, just closing the confirm dialog
 			}else if(btnIndex == 1){
-				_reportMail(msg);
+				this._reportMail(self,msg);
 			}
 		},msg.title,buttons);
 	}else{
@@ -101,6 +102,7 @@ function _show(msg){
 	}
 	
 }
+
 function _remote(msg){
 	var http = new XMLHttpRequest();
 	var message = msg.title + ':' + msg.body;

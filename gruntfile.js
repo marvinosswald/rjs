@@ -19,7 +19,15 @@ module.exports = function(grunt) {
           specs: 'tests/*.spec.js'
         }
       }
-    }
+    },
+    copy:{
+       main: {
+        files: [
+          {expand: true, flatten: true, src: ['build/rjs.min.js'], dest: '/Volumes/HDD/dev/mepantrag/www/js/libs', filter: 'isFile'},
+          {expand: true, flatten: true, src: ['build/rjs.min.js'], dest: '/Volumes/HDD/dev/mepauftrag/www/js/libs', filter: 'isFile'}
+        ]
+      }
+    } 
   });
 
   // Load the plugin that provides the "uglify" task.
@@ -28,7 +36,11 @@ module.exports = function(grunt) {
   //jasmine Plugin
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
+  //copy plugin
+  grunt.loadNpmTasks('grunt-contrib-copy');
+
   // Default task(s).
   grunt.registerTask('default', ['uglify']);
+
 
 };
